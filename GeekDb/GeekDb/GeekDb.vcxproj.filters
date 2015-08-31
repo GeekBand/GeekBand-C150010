@@ -13,6 +13,15 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\Loggers">
+      <UniqueIdentifier>{0815a2e2-5ba6-4ef1-8421-3cc04f6c4091}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Databases">
+      <UniqueIdentifier>{b027350d-84dc-42a9-b21c-875068c6adc3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Common">
+      <UniqueIdentifier>{a3c54078-0764-4e0e-8e7f-50462a5223a8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -30,23 +39,29 @@
     <ClInclude Include="GeekDefs.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="GeekSequenceDb.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="GeekErrorCode.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="GeekDbManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="GeekUtils.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="GeekDbStorage.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="GeekMapDb.h">
+    <ClInclude Include="ILogger.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeekSequenceDb.h">
+      <Filter>Header Files\Databases</Filter>
+    </ClInclude>
+    <ClInclude Include="GeekMapDb.h">
+      <Filter>Header Files\Databases</Filter>
+    </ClInclude>
+    <ClInclude Include="GeekUtils.h">
+      <Filter>Header Files\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Observer.h">
+      <Filter>Header Files\Common</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
