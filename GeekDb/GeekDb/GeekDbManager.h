@@ -22,7 +22,11 @@ namespace geek
 	{
 	public:
 		GeekDbManager(void) { }
-		~GeekDbManager(void) { }
+		~GeekDbManager(void) { 
+			for (auto &db : m_DbCollection) {
+				delete db.second;
+			}
+		}
 
 	public:
 		template <typename TConcrete>

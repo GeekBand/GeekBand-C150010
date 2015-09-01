@@ -5,6 +5,7 @@ namespace geek {
 
 	class LoggerContext {
 	public:
+		LoggerContext(const std::wstring m):msg(m){}
 		std::wstring msg;
 		virtual ~LoggerContext(){}
 	};
@@ -19,7 +20,9 @@ namespace geek {
 		virtual GeekResult critical(LoggerContext& context) = 0;
 		virtual GeekResult alert(LoggerContext& context) = 0;
 		virtual GeekResult emergency(LoggerContext& context) = 0;
+
+		virtual void Save() {};
 	public:
-		virtual ~ILogger() {}
+		virtual ~ILogger() { }
 	};
 }

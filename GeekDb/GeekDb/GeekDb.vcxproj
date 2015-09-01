@@ -144,6 +144,7 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="FileLogger.h" />
     <ClInclude Include="GeekDb.h" />
     <ClInclude Include="GeekDbStorage.h" />
     <ClInclude Include="GeekDbManager.h" />
@@ -158,6 +159,7 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="FileLogger.cpp" />
     <ClCompile Include="GeekDbStorage.cpp" />
     <ClCompile Include="GeekDbManager.cpp" />
     <ClCompile Include="GeekMapDb.cpp" />
