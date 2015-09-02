@@ -99,7 +99,7 @@ namespace geek
 		GeekDb* db = this->GetDatabaseByName(wszName);
 		if (db == NULL)
 			return GEEK_ERROR_NULLPOINTER;
-
+		
 		delete db;
 		m_DbCollection.erase(wszName);
 		

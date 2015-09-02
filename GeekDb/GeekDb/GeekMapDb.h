@@ -7,6 +7,7 @@
 
 #include "GeekDb.h"
 #include "GeekDbStorage.h"
+#include "FileLogger.h"
 #include <map>
 
 namespace geek {
@@ -16,9 +17,11 @@ namespace geek {
 	class GeekMapDb : public GeekDb {
 	public:
 		GeekMapDb(const GeekDbMetadata& metadata)
-			: GeekDb(metadata) {}
+			: GeekDb(metadata) {
+			logger = new FileLogger(this->m_Metadata);
+		}
 
-		~GeekMapDb(void) {}
+		~GeekMapDb() { logger->Save(); }
 
 	public:
 		GeekResult InsertKeyValue(INPARAM const GeekKeyValue& entry);
