@@ -17,9 +17,7 @@ namespace geek {
 	//
 	class GeekDb :public Subject {
 	public:
-		GeekDb(const GeekDbMetadata& metadata)
-			: m_Metadata(metadata) {}
-		GeekDb(const GeekDbMetadata& metadata, ILogger* l) :
+		GeekDb(const GeekDbMetadata& metadata, ILogger* l = nullptr) :
 			m_Metadata(metadata), logger(l) {}
 	public:
 		virtual GeekResult InsertKeyValue(INPARAM const GeekKeyValue& entry) = 0;
@@ -45,6 +43,12 @@ namespace geek {
 		void setLogger(ILogger* l) {
 			DISPOSE_OBJECT(l);
 			logger = l;
+		}
+
+		virtual void SaveLog() {
+			if (logger != nullptr) {
+				logger->Save();
+			}
 		}
 	protected:
 		GeekDbMetadata m_Metadata;

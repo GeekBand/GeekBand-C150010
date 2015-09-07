@@ -7,6 +7,7 @@
 geek::GeekResult geek::GeekMapDb::InsertKeyValue(INPARAM const GeekKeyValue & entry) {
 	m_kvContainer.insert(entry);
 	logger->info(LoggerContext(L"插入一条数据"));
+	Notify();
 	return GEEK_SUCCESS;
 }
 
@@ -19,6 +20,7 @@ geek::GeekResult geek::GeekMapDb::UpdateKeyValue(INPARAM const GeekKeyValue & en
 
 	(*it).second = entry.second;
 	logger->error(LoggerContext(L"修改了一条数据"));
+	Notify();
 	return GEEK_SUCCESS;
 }
 
@@ -35,7 +37,8 @@ geek::GeekResult geek::GeekMapDb::DeleteKeyValue(INPARAM const std::wstring & ws
 	}
 
 	m_kvContainer.erase(wszKey);
-	logger->error(LoggerContext(L"删除了一条数据"));
+	logger->info(LoggerContext(L"删除了一条数据"));
+	Notify();
 	return GEEK_SUCCESS;
 }
 
@@ -54,6 +57,7 @@ geek::GeekResult geek::GeekMapDb::QueryKeyValue(
 	}
 	entries.push_back(*it);
 	logger->error(LoggerContext(L"查询到了一条数据"));
+	Notify();
 	return GEEK_SUCCESS;
 }
 
@@ -68,12 +72,13 @@ geek::GeekResult geek::GeekMapDb::DumpKeyValues(INPARAM const std::wstring & wsz
 		logger->error(LoggerContext(L"没有找到要Dump的文件"));
 		return GEEK_ERROR_OUTOFMEMORY;
 	}
-	
-	GeekResult result = p_stg->AddRange(m_kvContainer.cbegin(),m_kvContainer.cend());
+
+	GeekResult result = p_stg->AddRange(m_kvContainer.cbegin(), m_kvContainer.cend());
 	DISPOSE_OBJECT(p_stg);
-	
+
 	if (result == GEEK_SUCCESS) {
 		logger->info(LoggerContext(L"文件成功Dump"));
+		Notify();
 	}
 	return result;
 }
@@ -99,6 +104,7 @@ geek::GeekResult geek::GeekMapDb::LoadKeyValues(
 	DISPOSE_OBJECT(pstg);
 
 	logger->info(LoggerContext(L"文件成功加载"));
+	Notify();
 	return GEEK_SUCCESS;
 }
 
@@ -106,7 +112,7 @@ void geek::GeekMapDb::TraverseKeyVaues(void) {
 	std::for_each(m_kvContainer.begin(), m_kvContainer.end(),
 		geek::PrintKeyValue());
 	logger->info(LoggerContext(L"遍历了一遍数据库"));
-	//logger->Save();
+	Notify();
 }
 
 const std::size_t geek::GeekMapDb::GetSize(void) const {

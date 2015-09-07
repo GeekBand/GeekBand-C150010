@@ -21,7 +21,14 @@
 
 namespace geek {
 
+	inline void PrintManyTimesCharInLine(const std::wstring& chs, int times = 1) {
+		for (int i = 0; i < times; ++i) {
+			std::wcout << chs;
+		}
+		std::wcout << std::endl;
+	}
 
+	//wstring to string
 	inline std::string ws2s(const std::wstring& ws) {
 		std::string curLocale = setlocale(LC_ALL, NULL);        // curLocale = "C";
 		setlocale(LC_ALL, "chs");
@@ -37,6 +44,7 @@ namespace geek {
 		setlocale(LC_ALL, curLocale.c_str());
 		return result;
 	}
+	//string to wstring
 	inline std::wstring s2ws(const std::string& s) {
 		setlocale(LC_ALL, "chs");
 		const char* _Source = s.c_str();
@@ -77,7 +85,7 @@ namespace geek {
 	// 
 	// Functor to print all the key/value entries in a database.
 	// Must overload operator().
-	//
+	// 
 	struct PrintKeyValue : std::unary_function<GeekKeyValue, void> {
 	public:
 		void operator()(const GeekKeyValue& entry) {
