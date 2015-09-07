@@ -23,7 +23,7 @@ namespace geek {
 	public:
 		void Save() {
 			_mkdir("DbLogFile");
-			fs = std::wofstream(path, std::ios::app | std::ios::out);
+			std::wofstream fs(path, std::ios::app | std::ios::out);
 			for (auto &logItem : LogData) {
 				fs << ws2s(logItem).c_str() << std::endl;
 			}
@@ -36,7 +36,6 @@ namespace geek {
 		~FileLogger() {}
 	private:
 		std::vector<std::wstring> LogData;
-		std::wofstream fs;
 		std::wstring path;
 
 	private:

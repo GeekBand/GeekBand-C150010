@@ -13,16 +13,15 @@
 #include <map>
 #include <algorithm>
 
-namespace geek
-{
+namespace geek {
 	//
 	// Manages all geek database created in memory.
 	//
-	class GeekDbManager
-	{
+	class GeekDbManager {
+	
 	public:
-		GeekDbManager(void) { }
-		~GeekDbManager(void) { 
+		GeekDbManager() { _mkdir(dir.c_str()); }
+		~GeekDbManager() {
 			for (auto &db : m_DbCollection) {
 				delete db.second;
 			}
@@ -32,7 +31,7 @@ namespace geek
 		template <typename TConcrete>
 		GeekResult CreateDatabase(
 			INPARAM const std::wstring& wszName
-		);
+			);
 
 		//
 		// Load database into memory from file system.
@@ -41,50 +40,55 @@ namespace geek
 		GeekResult LoadDatabase(
 			INPARAM const std::wstring& wszFileName,
 			OUTPARAM std::wstring& wszName
-		);
+			);
 
 		//
 		// Get the size the database by the given name.
 		//
 		const size_t GetDatabaseSize(
 			INPARAM const std::wstring& wszName
-		);
+			);
 
 		GeekResult InsertDatabase(
 			INPARAM const std::wstring& wszName,
 			INPARAM const GeekKeyValue& entry
-		);
+			);
 
 		//
 		// Batch insert
 		//
 		GeekResult InsertDatabase(
-			INPARAM const std::wstring& wszName, 
+			INPARAM const std::wstring& wszName,
 			INPARAM const std::vector<GeekKeyValue>& entries
-		);
-		
+			);
+
 		GeekResult UpdateDatabase(
 			INPARAM const std::wstring& wszName,
 			INPARAM const GeekKeyValue& entry
-		);
+			);
 
 		GeekResult DeleteDatabase(
 			INPARAM const std::wstring& wszName,
 			INPARAM const std::wstring& wszKey
-		);
+			);
 
 		GeekResult DisposeDatabase(INPARAM const std::wstring& wszName);
 
 		GeekResult DumpDatabase(
 			INPARAM const std::wstring& wszName,
 			INPARAM const std::wstring& wszFileName
-		);
+			);
 
 		GeekResult TraverseDatabase(INPARAM const std::wstring& wszName);
 
 	private:
-		inline GeekDb* GetDatabaseByName(const std::wstring& wszName)
-		{
+		static const std::string &dir;
+		static const std::wstring &w_dir;
+		std::wstring getPath(const std::wstring& s) {
+			return w_dir + L"/" + s;
+		}
+	private:
+		inline GeekDb* GetDatabaseByName(const std::wstring& wszName) {
 			CollectionIterator it = m_DbCollection.find(wszName);
 			if (it == m_DbCollection.end())
 				return NULL;
@@ -99,8 +103,7 @@ namespace geek
 
 	template <typename TConcrete>
 	GeekResult GeekDbManager::CreateDatabase(
-		INPARAM const std::wstring& wszName)
-	{
+		INPARAM const std::wstring& wszName) {
 		typedef typename GeekDbTraits<TConcrete>::Database Database;
 		GeekDbMetadata metadata;
 		metadata.wszName = wszName;
@@ -116,34 +119,34 @@ namespace geek
 	template <typename TConcrete>
 	GeekResult GeekDbManager::LoadDatabase(
 		INPARAM const std::wstring & wszFileName,
-		OUTPARAM std::wstring& wszName)
-	{
+		OUTPARAM std::wstring& wszName) {
+
+		const std::wstring &path = getPath(wszFileName);
 		if (geek::IsNullOrEmpty(wszFileName))
 			return GEEK_ERROR_INVALIDPARAM;
 
-		if (!geek::IsFileExists(wszFileName))
+		if (!geek::IsFileExists(path))
 			return GEEK_ERROR_FILENOTFOUND;
 
 		typedef typename GeekDbTraits<TConcrete>::Database Database;
 		Database* pdb = new Database(GeekDbMetadata());
 		if (pdb == NULL)
-			return GEEK_ERROR_OUTOFMEMORY;			
-		
-		GeekResult result = pdb->LoadKeyValues(wszFileName, wszName);
+			return GEEK_ERROR_OUTOFMEMORY;
+
+		GeekResult result = pdb->LoadKeyValues(path, wszName);
 
 		// does the database name already exists ?
 		CollectionIterator it = m_DbCollection.find(wszName);
-		if (it != m_DbCollection.end())
-		{
+		if (it != m_DbCollection.end()) {
 			// already exists, replace with the loaded db.
 			m_DbCollection[wszName] = pdb;
 		}
-		else
-		{
+		else {
 			// add the loaded db.
 			m_DbCollection.insert(std::make_pair(wszName, pdb));
 		}
-		
+
 		return result;
 	}
+	
 }

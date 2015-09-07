@@ -22,6 +22,12 @@
     <Filter Include="Header Files\Common">
       <UniqueIdentifier>{a3c54078-0764-4e0e-8e7f-50462a5223a8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\CommandSystem">
+      <UniqueIdentifier>{7b83231a-a27c-43a5-aa04-18246e225e92}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\CommandSystem\Commands">
+      <UniqueIdentifier>{59a1671f-3b22-4ec7-8eb7-c62c5e2c28c6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -66,6 +72,21 @@
     <ClInclude Include="FileLogger.h">
       <Filter>Header Files\Loggers</Filter>
     </ClInclude>
+    <ClInclude Include="CommandSystem.h">
+      <Filter>Header Files\CommandSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Commands.h">
+      <Filter>Header Files\CommandSystem\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="IGeekDbCommand.h">
+      <Filter>Header Files\CommandSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="ICommand.h">
+      <Filter>Header Files\CommandSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="CreateDatabaseCommand.h">
+      <Filter>Header Files\CommandSystem\Commands</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -87,6 +108,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="FileLogger.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CommandSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

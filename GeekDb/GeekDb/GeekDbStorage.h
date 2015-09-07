@@ -145,7 +145,7 @@ namespace geek
 		//
 		const wchar_t* const s_wszStorageNameGeekMetadata = L"GeekMetadata";
 		const wchar_t* const s_wszStorageNameGeekPackage = L"GeekDatabasePackage";
-		const wchar_t* const s_wszStreamNameDatabaseName = L"\006DatabaseName";
+		const wchar_t* const s_wszStreamNameDatabaseName = L"06DatabaseName";
 
 	private:
 		IStorage* m_pstg = NULL;
