@@ -19,7 +19,7 @@ namespace geek {
 			m_manager = manager;
 		}
 		virtual ~IGeekDbCommand(){}
-	private:
+	protected:
 		GeekDbManager *m_manager;
 	};
 }

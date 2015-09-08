@@ -18,7 +18,7 @@ namespace geek {
 	// Manages all geek database created in memory.
 	//
 	class GeekDbManager {
-	
+
 	public:
 		GeekDbManager() { _mkdir(dir.c_str()); }
 		~GeekDbManager() {
@@ -71,7 +71,11 @@ namespace geek {
 			INPARAM const std::wstring& wszName,
 			INPARAM const std::wstring& wszKey
 			);
-
+		GeekResult QueryDatabase(
+			INPARAM const std::wstring& wszName,
+			INPARAM const std::wstring& wszKey,
+			OUTPARAM std::vector<GeekKeyValue>& entries
+			);
 		GeekResult DisposeDatabase(INPARAM const std::wstring& wszName);
 
 		GeekResult DumpDatabase(
@@ -80,6 +84,13 @@ namespace geek {
 			);
 
 		GeekResult TraverseDatabase(INPARAM const std::wstring& wszName);
+		std::vector<std::wstring> GetDBNames()const {
+			std::vector <std::wstring> dbnames;
+			for (auto & it = m_DbCollection.begin(); it != m_DbCollection.end(); ++it) {
+				dbnames.push_back(it->first);
+			}
+			return dbnames;
+		}
 
 	private:
 		static const std::string &dir;
@@ -148,5 +159,5 @@ namespace geek {
 
 		return result;
 	}
-	
+
 }
