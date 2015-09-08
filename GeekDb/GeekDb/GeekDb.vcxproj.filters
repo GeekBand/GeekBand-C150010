@@ -87,6 +87,30 @@
     <ClInclude Include="CreateDatabaseCommand.h">
       <Filter>Header Files\CommandSystem\Commands</Filter>
     </ClInclude>
+    <ClInclude Include="DeleteDatabaseCommand.h">
+      <Filter>Header Files\CommandSystem\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="DumpDatabaseCommand.h">
+      <Filter>Header Files\CommandSystem\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="LoadDatabaseCommand.h">
+      <Filter>Header Files\CommandSystem\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="ListDatabaseCommand.h">
+      <Filter>Header Files\CommandSystem\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="CreateDataCommand.h">
+      <Filter>Header Files\CommandSystem\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="DeleteDataCommand.h">
+      <Filter>Header Files\CommandSystem\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="ModifyDataCommand.h">
+      <Filter>Header Files\CommandSystem\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="QueryDataCommand.h">
+      <Filter>Header Files\CommandSystem\Commands</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">

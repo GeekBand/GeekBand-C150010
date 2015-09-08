@@ -1,3 +1,11 @@
 #pragma once
 #include "IGeekDbCommand.h"
 #include "CreateDatabaseCommand.h"
+#include "CreateDataCommand.h"
+#include "DeleteDatabaseCommand.h"
+#include "DeleteDataCommand.h"
+#include "DumpDatabaseCommand.h"
+#include "ListDatabaseCommand.h"
+#include "LoadDatabaseCommand.h"
+#include "ModifyDataCommand.h"
+#include "QueryDataCommand.h"

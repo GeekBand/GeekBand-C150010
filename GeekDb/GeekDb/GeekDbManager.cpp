@@ -83,6 +83,18 @@ namespace geek {
 		return result;
 	}
 
+	GeekResult GeekDbManager::QueryDatabase(INPARAM const std::wstring & wszName,
+		INPARAM const std::wstring & wszKey, OUTPARAM std::vector<GeekKeyValue>& entries) {
+		if (geek::IsNullOrEmpty(wszName) || geek::IsNullOrEmpty(wszKey))
+			return GEEK_ERROR_INVALIDPARAM;
+		GeekDb *db = GetDatabaseByName(wszName);
+		if (db == NULL) {
+			return GEEK_ERROR_NULLPOINTER;
+		}
+		GeekResult result = db->QueryKeyValue(wszKey, entries);
+		return result;
+	}
+
 	GeekResult GeekDbManager::DisposeDatabase(
 		INPARAM const std::wstring& wszName) {
 		if (geek::IsNullOrEmpty(wszName))

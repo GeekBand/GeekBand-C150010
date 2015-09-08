@@ -6,6 +6,7 @@ void geek::CommandSystem::Run() {
 		ShowMenu();
 		std::wstring command;
 		std::wcin >> command;
+		system("cls");
 		std::wcout << std::endl;
 		//system("cls");
 		ExcuteCommand(command);
