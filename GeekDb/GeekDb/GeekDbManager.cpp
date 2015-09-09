@@ -136,6 +136,26 @@ namespace geek {
 		db->TraverseKeyVaues();
 		return GEEK_SUCCESS;
 	}
+	GeekResult GeekDbManager::OrderDatabase(INPARAM const std::wstring & wszName) {
+		if (geek::IsNullOrEmpty(wszName))
+			return GEEK_ERROR_INVALIDPARAM;
+
+		GeekDb* db = this->GetDatabaseByName(wszName);
+		if (db == NULL)
+			return GEEK_ERROR_NULLPOINTER;
+		db->Attach(m_observer);
+		return GEEK_SUCCESS;
+	}
+	GeekResult GeekDbManager::UnOrderDatabase(INPARAM const std::wstring & wszName) {
+		if (geek::IsNullOrEmpty(wszName))
+			return GEEK_ERROR_INVALIDPARAM;
+
+		GeekDb* db = this->GetDatabaseByName(wszName);
+		if (db == NULL)
+			return GEEK_ERROR_NULLPOINTER;
+		db->Detach(m_observer);
+		return GEEK_SUCCESS;
+	}
 	const std::string &GeekDbManager::dir = "Db";
 	const std::wstring &GeekDbManager::w_dir = L"Db";
 }

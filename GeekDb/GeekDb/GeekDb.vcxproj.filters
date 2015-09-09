@@ -111,6 +111,12 @@
     <ClInclude Include="QueryDataCommand.h">
       <Filter>Header Files\CommandSystem\Commands</Filter>
     </ClInclude>
+    <ClInclude Include="OrderDatabase.h">
+      <Filter>Header Files\CommandSystem\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="UnOrderDatabase.h">
+      <Filter>Header Files\CommandSystem\Commands</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">

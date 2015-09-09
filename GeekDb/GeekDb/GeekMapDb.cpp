@@ -7,6 +7,7 @@
 geek::GeekResult geek::GeekMapDb::InsertKeyValue(INPARAM const GeekKeyValue & entry) {
 	m_kvContainer.insert(entry);
 	logger->info(LoggerContext(L"插入一条数据"));
+	updateContext(1);
 	Notify();
 	return GEEK_SUCCESS;
 }
@@ -20,6 +21,7 @@ geek::GeekResult geek::GeekMapDb::UpdateKeyValue(INPARAM const GeekKeyValue & en
 
 	(*it).second = entry.second;
 	logger->error(LoggerContext(L"修改了一条数据"));
+	updateContext(0, 0, 1);
 	Notify();
 	return GEEK_SUCCESS;
 }
@@ -38,6 +40,7 @@ geek::GeekResult geek::GeekMapDb::DeleteKeyValue(INPARAM const std::wstring & ws
 
 	m_kvContainer.erase(wszKey);
 	logger->info(LoggerContext(L"删除了一条数据"));
+	updateContext(0, 1);
 	Notify();
 	return GEEK_SUCCESS;
 }
@@ -57,6 +60,7 @@ geek::GeekResult geek::GeekMapDb::QueryKeyValue(
 	}
 	entries.push_back(*it);
 	logger->error(LoggerContext(L"查询到了一条数据"));
+	updateContext(0, 0, 0, 1);
 	Notify();
 	return GEEK_SUCCESS;
 }
