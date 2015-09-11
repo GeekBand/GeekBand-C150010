@@ -18,6 +18,7 @@ namespace geek {
 	public:
 		GeekMapDb(const GeekDbMetadata& metadata)
 			: GeekDb(metadata) {
+			context = new ManagerObserverContext();
 			logger = new FileLogger(this->m_Metadata);
 		}
 
@@ -47,6 +48,9 @@ namespace geek {
 		const std::size_t GetSize(void) const;
 
 	private:
+		void updateContext(int c = 0, int d = 0, int u = 0, int q = 0) {
+			context = new ManagerObserverContext(c, d, u, q);
+		}
 		typedef std::map<std::wstring, std::wstring> KeyValueContainer;
 		typedef KeyValueContainer::iterator KeyValueIterator;
 		KeyValueContainer m_kvContainer;

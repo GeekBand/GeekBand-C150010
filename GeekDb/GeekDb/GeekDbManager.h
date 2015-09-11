@@ -17,6 +17,17 @@ namespace geek {
 	//
 	// Manages all geek database created in memory.
 	//
+	class ManagerObserver :public Observer {
+		void Update(ObserverContext* context) {
+			ManagerObserverContext *managerContext = (ManagerObserverContext *)context;
+			std::wcout << L"\nDatabase Changed:\n";
+			std::wcout << L"update item(s) :" << managerContext->changeCount << std::endl;
+			std::wcout << L"query item(s) :" << managerContext->queryCount << std::endl;
+			std::wcout << L"delete item(s) :" << managerContext->deleteCount << std::endl;
+			std::wcout << L"insert item(s) :" << managerContext->insertCount << std::endl;
+		}
+	};
+
 	class GeekDbManager {
 
 	public:
@@ -91,7 +102,9 @@ namespace geek {
 			}
 			return dbnames;
 		}
-
+		//order & unorder
+		GeekResult OrderDatabase(INPARAM const std::wstring& wszName);
+		GeekResult UnOrderDatabase(INPARAM const std::wstring& wszName);
 	private:
 		static const std::string &dir;
 		static const std::wstring &w_dir;
@@ -110,6 +123,7 @@ namespace geek {
 	private:
 		typedef std::map<std::wstring, GeekDb*>::iterator CollectionIterator;
 		std::map<std::wstring, GeekDb*> m_DbCollection;
+		Observer *m_observer = new ManagerObserver;
 	};
 
 	template <typename TConcrete>

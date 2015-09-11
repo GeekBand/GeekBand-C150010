@@ -18,6 +18,7 @@ namespace geek {
 		CommandSystem() {
 			m_DbManager = new GeekDbManager();
 
+			//base commands
 			insertCommand(new CreateDatabaseCommand(m_DbManager));
 			insertCommand(new CreateDataCommand(m_DbManager));
 			insertCommand(new DeleteDatabaseCommand(m_DbManager));
@@ -27,6 +28,11 @@ namespace geek {
 			insertCommand(new ModifyDataCommand(m_DbManager));
 			insertCommand(new LoadDatabaseCommand(m_DbManager));
 			insertCommand(new QueryDataCommand(m_DbManager));
+
+			//order commands
+			insertCommand(new OrderDatabase(m_DbManager));
+			insertCommand(new UnOrderDatabase(m_DbManager));
+			//advance commands
 		}
 		CommandSystem(const CommandSystem& t);
 
